@@ -11,4 +11,9 @@ const findUserByEmail = async (email) => {
   return rows[0];
 };
 
-module.exports = {createUser, findUserByEmail};
+const deleteUserById = async (id) => {
+  const sql = 'DELETE FROM users WHERE id = ?';
+  return db.promise().query(sql, [id]);
+};
+
+module.exports = {createUser, findUserByEmail, deleteUserById};
