@@ -1,3 +1,4 @@
+const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 
 const authenticateToken = (req, res, next) => {
@@ -9,6 +10,7 @@ const authenticateToken = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log('Decoded Token:', decoded);
     req.user = decoded; // Tambahkan data pengguna ke req.user
     next();
   } catch (error) {

@@ -18,9 +18,9 @@ const getAnalytics = async (req, res) => {
 };
 
 const approveBorrowRequest = async (req, res) => {
-  const { borrow_request_id } = req.body;
+  const { request_id } = req.body;
   try {
-    const borrowRequest = await borrowRequestModel.getBorrowRequestById(borrow_request_id);
+    const borrowRequest = await borrowRequestModel.getBorrowRequestById(request_id);
     if (!borrowRequest) return res.status(404).json({ message: 'Borrow request not found' });
 
     if (borrowRequest.status !== 'pending') {

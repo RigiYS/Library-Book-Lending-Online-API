@@ -1,10 +1,15 @@
 const express = require('express');
-const { register, login, getUserDetails, updateUserDetails, deleteUser } = require('../controllers/usersController');
+const {
+  register,
+  login,
+  getUserDetails,
+  updateUserDetails,
+  deleteUser,
+} = require('../controllers/usersController');
 const authenticateToken = require('../middlewares/authMiddleware');
 
 const router = express.Router();
 
-// Rute registrasi dan login
 router.post('/register', register);
 router.post('/login', login);
 router.get('/:id', authenticateToken, getUserDetails);

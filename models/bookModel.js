@@ -1,3 +1,4 @@
+// File: /src/models/bookModel.js
 const db = require('../config/db');
 
 const getAllBooks = async () => {
@@ -28,4 +29,10 @@ const deleteBook = async (id) => {
   return db.promise().query(sql, [id]);
 };
 
-module.exports = {getAllBooks, getBookById, createBook, updateBook, deleteBook,};
+module.exports = {
+  getAllBooks,
+  getBookById,
+  createBook,
+  updateBook,
+  deleteBook,
+};

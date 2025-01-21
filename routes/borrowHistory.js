@@ -4,7 +4,6 @@ const authenticateToken = require('../middlewares/authMiddleware');
 
 const router = express.Router();
 
-// Rute untuk riwayat peminjaman
 router.get('/', authenticateToken, getBorrowHistory);
 router.get('/:id', authenticateToken, getBorrowHistoryById);
 

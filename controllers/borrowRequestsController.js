@@ -3,6 +3,8 @@ const borrowRequestModel = require('../models/borrowRequestModel');
 const createBorrowRequest = async (req, res) => {
   const { bookId } = req.body;
   const userId = req.user.id; // Ambil ID pengguna dari token JWT
+  console.log('User ID:', userId);
+  
   try {
     await borrowRequestModel.createBorrowRequest(userId, bookId);
     res.status(201).json({ message: 'Borrow request created successfully' });
