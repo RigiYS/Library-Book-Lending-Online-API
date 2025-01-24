@@ -53,15 +53,17 @@ const getUserDetails = async (req, res) => {
 
 const updateUserDetails = async (req, res) => {
   const userId = req.params.id;
-  const { username, email } = req.body;
+  const { username, email, password } = req.body;
   try {
     const user = await userModel.findUserById(userId);
+    
     if (!user) return res.status(404).json({ message: 'User not found' });
-
-    await userModel.updateUser(userId, { username, email });
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    await userModel.updateUserById(userId, username, email, hashedPassword );
     res.status(200).json({ message: 'User updated successfully' });
   } catch (error) {
-    res.status(500).json({ message: 'Error updating user details', error });
+    res.status(500).json(error);
   }
 };
 

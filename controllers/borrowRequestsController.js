@@ -1,12 +1,12 @@
 const borrowRequestModel = require('../models/borrowRequestModel');
 
 const createBorrowRequest = async (req, res) => {
-  const { bookId } = req.body;
-  const userId = req.user.id; // Ambil ID pengguna dari token JWT
+  const { book_id } = req.body;
+  const user_id = req.user.id; // Ambil ID pengguna dari token JWT
   console.log('User ID:', userId);
   
   try {
-    await borrowRequestModel.createBorrowRequest(userId, bookId);
+    await borrowRequestModel.createBorrowRequest(user_id, book_id);
     res.status(201).json({ message: 'Borrow request created successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Error creating borrow request', error });
@@ -14,9 +14,9 @@ const createBorrowRequest = async (req, res) => {
 };
 
 const getBorrowRequests = async (req, res) => {
-  const userId = req.user.id; // Ambil ID pengguna dari token JWT
+  const user_id = req.user.id; // Ambil ID pengguna dari token JWT
   try {
-    const requests = await borrowRequestModel.getBorrowRequestsByUserId(userId);
+    const requests = await borrowRequestModel.getBorrowRequestsByUserId(user_id);
     res.status(200).json(requests);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching borrow requests', error });

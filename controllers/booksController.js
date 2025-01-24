@@ -1,4 +1,5 @@
 const bookModel = require('../models/bookModel');
+const axios = require('axios');
 
 const getAllBooks = async (req, res) => {
   try {
@@ -18,6 +19,17 @@ const getBookById = async (req, res) => {
     res.status(500).json({ message: 'Error fetching book', error });
   }
 };
+
+const searchBook = async (req, res) => {
+  console.log(req.query.query);
+  
+  try {
+    const response = await axios.get(`https://api.bigbookapi.com/search-books?api-key=${process.env.API_KEY_LIBRARY}&query=${req.query.query}`);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ message: 'Error searching book', error });
+  }
+}
 
 const createBook = async (req, res) => {
   const { title, author, isbn, status } = req.body;
@@ -48,4 +60,4 @@ const deleteBook = async (req, res) => {
   }
 };
 
-module.exports = {getAllBooks, getBookById, createBook, updateBook, deleteBook};
+module.exports = {getAllBooks, getBookById, searchBook, createBook, updateBook, deleteBook};

@@ -20,7 +20,16 @@ const getBorrowHistoryById = async (historyId) => {
   return rows[0];
 };
 
+const createBorrowHistory = async (user_id, book_id) => {
+  const sql = 'INSERT INTO borrow_history (`user_id`, `book_id`, `borrow_date`) VALUES (?, ?, ?)';
+  const borrowDate = new Date()
+  const [rows] = await db.promise().query(sql, [user_id, book_id, borrowDate]);
+  return rows[0];
+  
+};
+
 module.exports = {
   getBorrowHistoryByUserId,
   getBorrowHistoryById,
+  createBorrowHistory
 };

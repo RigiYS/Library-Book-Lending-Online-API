@@ -1,33 +1,20 @@
 const borrowRequestModel = require('../models/borrowRequestModel');
-
-const getAnalytics = async (req, res) => {
-  try {
-    const sql = `
-      SELECT b.title, COUNT(bh.book_id) AS borrow_count
-      FROM borrow_history bh
-      JOIN books b ON bh.book_id = b.id
-      GROUP BY bh.book_id
-      ORDER BY borrow_count DESC
-      LIMIT 5;
-    `;
-    const [rows] = await borrowRequestModel.queryRaw(sql);
-    res.status(200).json({ message: 'Borrowing trends and popular books', data: rows });
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching analytics', error });
-  }
-};
+const borrowHistoryModel = require('../models/borrowHistoryModel')
 
 const approveBorrowRequest = async (req, res) => {
-  const { request_id } = req.body;
+  const { request_id, book_id } = req.body;
+  const user_id = req.user.id
   try {
     const borrowRequest = await borrowRequestModel.getBorrowRequestById(request_id);
+    console.log(borrowRequest)
     if (!borrowRequest) return res.status(404).json({ message: 'Borrow request not found' });
 
     if (borrowRequest.status !== 'pending') {
       return res.status(400).json({ message: 'Borrow request is not pending' });
     }
 
-    await borrowRequestModel.updateBorrowRequestStatus(borrow_request_id, 'approved');
+    await borrowRequestModel.updateBorrowRequestStatus(request_id, 'approved');
+    await borrowHistoryModel.createBorrowHistory(user_id, book_id)
     res.status(200).json({ message: 'Borrow request approved successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Error approving borrow request', error });
@@ -51,4 +38,4 @@ const rejectBorrowRequest = async (req, res) => {
   }
 };
 
-module.exports = { getAnalytics, approveBorrowRequest, rejectBorrowRequest };
+module.exports = { approveBorrowRequest, rejectBorrowRequest };

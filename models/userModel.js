@@ -17,9 +17,11 @@ const createUser = async (username, email, password, role) => {
   return db.promise().query(sql, [username, email, password, role]);
 };
 
-const updateUserById = async (id, username, email) => {
-  const sql = 'UPDATE users SET username = ?, email = ? WHERE user_id = ?';
-  return db.promise().query(sql, [username, email, id]);
+const updateUserById = async (user_id, username, email, password) => {
+  const sql = 'UPDATE users SET username = ?, email = ?, password = ? WHERE user_id = ?';
+  console.log(user_id);
+  
+  return db.promise().query(sql, [username, email, password, user_id]);
 };
 
 const deleteUserById = async (id) => {
