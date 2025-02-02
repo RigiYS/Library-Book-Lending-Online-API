@@ -29,6 +29,7 @@ Lecturer: Alun Sujjada, S.Kom, M.T
 Informatics Engineering students of Nusa Putra University, also knowed as the most handsome and beautiful students in class TI23T.
 
 [![instagram](https://raw.githubusercontent.com/CLorant/readme-social-icons/main/small/colored/instagram.svg)][1] | MUHAMMAD RIGI YUHDA SYAHRIL
+
 [![instagram](https://raw.githubusercontent.com/CLorant/readme-social-icons/main/small/colored/instagram.svg)][2] | MAULID YUSWAN HIDAYAT
 
 [![instagram](https://raw.githubusercontent.com/CLorant/readme-social-icons/main/small/colored/instagram.svg)][3] | ENJELI
