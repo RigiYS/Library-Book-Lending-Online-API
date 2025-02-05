@@ -34,9 +34,12 @@ Informatics Engineering students of Nusa Putra University, also knowed as the mo
 
 [![instagram](https://raw.githubusercontent.com/CLorant/readme-social-icons/main/small/colored/instagram.svg)][3] | ENJELI
 
+[![instagram](https://raw.githubusercontent.com/CLorant/readme-social-icons/main/small/colored/instagram.svg)][3] | CHAIRIL SUTISNA
+
 [1]: https://instagram.com/rigiyuda_
 [2]: https://instagram.com/maulidyh02_
 [3]: https://instagram.com/enjeli_._
+[4]: https://instagram.com/
 
 # API Documentation
 
